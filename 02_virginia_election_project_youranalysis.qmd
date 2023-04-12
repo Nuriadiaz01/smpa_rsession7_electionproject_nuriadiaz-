@@ -1,6 +1,6 @@
 ---
 title: "Virginia Election Project"
-author: "putyournamehere"
+author: "Nuria Diaz"
 execute:
   echo: true
 format:
@@ -37,5 +37,5 @@ joined_vacomparison <- readRDS(here("processed_data", "joined_vacomparison.rds")
 
 head(joined_vacomparison)
 
-
+joined_vacomparison
 ```

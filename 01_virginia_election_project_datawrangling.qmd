@@ -324,7 +324,20 @@ Now that things are join, let's actually go ahead and start making columns to co
 Where should we go from here....? Give it a shot... 
 
 ```{r}
+joined_vacomparison %>% 
+  mutate (pct_youngkin - trump_pct) 
 
+joined_vacomparison %>% 
+  mutate (mc_overperform= pct_mcauliffe - biden_pct, mc_overperform_morethan5 = if_else(mc_overperform < -5, "YES", "NO" )
+  ) 
+
+```
+
+
+```{r}
+
+saveRDS(joined_vacomparison, here("processed_data", "joined_vacomparison.rds"))
+write_csv(joined_vacomparison, here("processed_data", "joined_vacomparison.csv"))
 
 
 ```
@@ -332,20 +345,33 @@ Where should we go from here....? Give it a shot...
 
 ```{r}
 
+joined_vacomparison %>% 
+  mutate (mc_overperform= trump_pct - pct_youngkin, mc_overperform_morethan5 = if_else(mc_overperform < -5, "YES", "NO" ))
 
+#looking to see how Trump overperformed Youngkin in Virginia 
+
+joined_vacomparison %>% 
+  mutate (mc_overperform= pct_youngkin - trump_pct, mc_overperform_morethan5 = if_else(mc_overperform < -5, "YES", "NO" ))
+
+#looking for the reverse 
+
+joined_vacomparison %>% 
+  mutate (pct_youngkin - pct_mcauliffe / trump_pct - biden_pct) 
+
+#looking to see the average difference in democrat vs. republican votes in both elections to see which counties had an increase or decrease 
+
+joined_vacomparison %>% 
+  mutate (youngkin - mcauliffe / trump - biden) 
+
+#just playing around to see which way it would make more sense to showcase the voting change in each county 
+
+joined_vacomparison %>% 
+  mutate (biden + mcauliffe - trump + youngkin) 
 
 ```
 
 
 ```{r}
-
-
-
-```
-
-
-```{r}
-
 
 
 ```
